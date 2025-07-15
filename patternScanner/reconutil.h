@@ -10,6 +10,8 @@ typedef struct {
     size_t  moduleSize;
 }preciseModuleInfo;
 
+bool getMemoryRegionByAddr(std::vector<preciseModuleInfo> modules, preciseModuleInfo* module_info_result, void* address);
+
 bool getAllModules(std::vector<preciseModuleInfo>* modules);
 
 std::vector<preciseModuleInfo> filterForAccessableModules(std::vector<preciseModuleInfo> modules);

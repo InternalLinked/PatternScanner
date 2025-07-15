@@ -1,5 +1,31 @@
 #include "reconutil.h"
 
+
+bool getMemoryRegionByAddr(std::vector<preciseModuleInfo> modules, preciseModuleInfo* module_info_result, void* address) {
+
+
+    size_t addr = (size_t)address;
+
+    for (preciseModuleInfo mod : modules) {
+
+        size_t from = (size_t)mod.baseAddress;
+        size_t to = size_t(mod.baseAddress) + mod.moduleSize;
+
+        //std::cout << (LPVOID)from << " -> " << (LPVOID)to << std::endl;
+
+        if (addr > from && addr < to) {
+            module_info_result->baseAddress = mod.baseAddress;
+            module_info_result->moduleSize = mod.moduleSize;
+
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
 bool getAllModules(std::vector<preciseModuleInfo>* modules) {
     /*
     Getting all modules and storing the baseAddresses and the baseSizes into an std::vector<preciseModuleInfo>*
