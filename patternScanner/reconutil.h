@@ -7,7 +7,7 @@
 
 typedef struct {
     LPVOID         baseAddress;
-    std::uint64_t  moduleSize;
+    size_t  moduleSize;
 }preciseModuleInfo;
 
 bool getAllModules(std::vector<preciseModuleInfo>* modules);
